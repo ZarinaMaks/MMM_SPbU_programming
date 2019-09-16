@@ -4,18 +4,18 @@
 //Otherwise, return A(m-1, A(m, n-1))
 
 #include <stdio.h>
-int ack(int m, int n)
+int ackermann(int m, int n)
 {
   if (m == 0) return n+1;
-  if (n == 0) return ack( m - 1, 1 );
-  return ack( m - 1, ack( m, n - 1 ) );
+  if (n == 0) return ackermann( m - 1, 1 );
+  return ackermann( m - 1, ackermann( m, n - 1 ) );
 }
 
 int main()
 {
   for (int i = 0; i < 6; ++i)
     for (int j = 0; j < 6; ++j)
-      printf("ack(%d,%d) = %d\n", i, j, ack(i,j));
+      printf("ackermann(%d,%d) = %d\n", i, j, ackermann(i,j));
       
   return 0;
 }
