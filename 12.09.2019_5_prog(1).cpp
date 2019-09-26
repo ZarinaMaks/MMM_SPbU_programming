@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
 
-//I guess you expected us to do this exercise without creating a new array, but it hadn't been specified explicitly.
-
 int main () {
     
 int j=0;
