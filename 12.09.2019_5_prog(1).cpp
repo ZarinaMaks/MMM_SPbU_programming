@@ -18,6 +18,6 @@ if (A[i] % 2 == 1) {
    j++;
 }
 }
-
+delete []A;
 return 0;
 }
