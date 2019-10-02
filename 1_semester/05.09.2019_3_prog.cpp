@@ -1,3 +1,4 @@
+//Написать программу находящую количество делителей натурального числа
 #include <iostream>
 using namespace std;
 int main() {
