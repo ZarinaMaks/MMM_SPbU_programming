@@ -25,7 +25,7 @@ void comb(int arr[], int data[],
         for (int j = 0; j < r; j++)  
             cout << data[j] << " ";  
         
-        for (int j = r; j > -1; j--)  
+        for (int j = r-1; j > -1; j--)  
             cout << data[j] << " "; 
             cout << endl;
             
@@ -43,9 +43,10 @@ for (int i = start; i <= end &&
 int main()  
 {  
     int arr[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int r;
-    cout << "N=n/2=";
-    cin >> r;
+    int r, x;
+    cout << "vvedite chetnoe N=";
+    cin >> x;
+    r=x/2;
     int n = sizeof(arr)/sizeof(arr[0]);  
     print(arr, n, r);  
 }  
