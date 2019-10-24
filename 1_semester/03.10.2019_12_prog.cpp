@@ -20,5 +20,6 @@ int main()
         a[j] = 0;
     }
   }
+  delete []a;
   return 0;
 }
