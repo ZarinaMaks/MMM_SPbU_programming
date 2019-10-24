@@ -6,9 +6,17 @@ using namespace std;
 int main () {
     
 int j=0;
+int k=0;
 int n=5;
 int A[n];
-int B[n];
+
+for (int i=0; i<n ; i++){
+    if (A[i]%2==1) {
+       k++;
+    };
+}    
+
+int B[k];
 
 for (int i=0; i<n ; i++){
     cin >> A[i];
@@ -20,6 +28,5 @@ if (A[i] % 2 == 1) {
    j++;
 }
 }
-delete []A;
 return 0;
 }
