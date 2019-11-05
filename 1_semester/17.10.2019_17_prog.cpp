@@ -1,14 +1,10 @@
 //Реализовать умножение Карацубы для длинной арифметики
 #include <cstring>
+#include <cmath>
 #include <iostream>
 using namespace std;
- 
-#define BASE 10 
-#define MIN_LENGTH_FOR_KARATSUBA 4 
 typedef int digit;
 typedef unsigned long int size_length; 
- 
-using namespace std;
  
 struct long_value { 
   digit *values; 
@@ -33,17 +29,17 @@ long_value &sub(long_value &a, long_value b) {
   return a;
 }
  
-void normalize(long_value l) {
+void normalize(long_value &C) {
 
-  for (size_length i = 0; i < l.length - 1; ++i) {
-    if (l.values[i] >= BASE) { 
-      digit carryover = l.values[i] / BASE;
-      l.values[i + 1] += carryover;
-      l.values[i] -= carryover * BASE;
-    } else if (l.values[i] < 0) { 
-      digit carryover = (l.values[i] + 1) / BASE - 1;
-      l.values[i + 1] += carryover;
-      l.values[i] -= carryover * BASE;
+  for (size_length i = 0; i < C.length - 1; ++i) {
+    if (C.values[i] >= 10) { 
+      digit carryover = C.values[i] / 10;
+      C.values[i + 1] += carryover;
+      C.values[i] -= carryover * 10;
+    } else if (C.values[i] < 0) { 
+      digit carryover = (C.values[i] + 1) / 10 - 1;
+      C.values[i + 1] += carryover;
+      C.values[i] -= carryover * 10;
     }
   }
 }
@@ -54,7 +50,7 @@ long_value karatsuba(long_value a, long_value b) {
   product.length = a.length + b.length;
   product.values = new digit[product.length];
  
-  if (a.length < MIN_LENGTH_FOR_KARATSUBA) { 
+  if (a.length < 4) { 
     memset(product.values, 0, sizeof(digit) * product.length);
     for (size_length i = 0; i < a.length; ++i)
       for (size_length j = 0; j < b.length; ++j) {
@@ -105,26 +101,16 @@ long_value karatsuba(long_value a, long_value b) {
     delete [] product_of_second_parts.values;
   }
  
-  normalize(product);
- 
+  normalize(product); 
   return product;
 }
 
 
 int main (){ 
-    long_value x, y, z;
-    digit n=8;
+    long_value number1, number2;
+    cin >>  number1;
+    cin >>  number2;
     
-    for (int i=0; i<n; i++) {
-        cin >> x.values[i];
-    }
-
-    for (int i=0; i<n; i++) {
-        cin >> y.values[i];
-    }
-    
-    z=karatsuba(x, y);
-    cout << z;
-    
+    cout << karatsuba (number1, number2) << endl;
     return 0;
 }
