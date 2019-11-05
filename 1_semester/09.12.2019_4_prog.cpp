@@ -3,34 +3,29 @@
 #include <string>
 using namespace std;
 
-struct Person {
-string Name;
-int age;
-};
-
-void sort(Person** q, int n) {
-for (int i = 0; i < n; i++)
-for (int j = 0; j < n - i - 1; j++)
-if (q[j]->age > q[j + 1]->age)
-{
-Person* temp = q[j];
-q[j] = q[j + 1];
-q[j + 1] = temp;
+int sort(int *array,int k) {
+int t=0; k=0;
+int *i=array+k;
+for(int *x=array; x< i-1 ; x++) {
+   for(int *y=array; y< i-k ; y++) {
+      if(*y>*(y+1)) {
+          t=*y;
+          *y=*(y+1);
+          *(y+1)=t; }
+   }
+        k++; 
 }
 }
 
-int main() {
-int n = 3;
-Person* p = new Person[n];
-for (int i = 0; i < n; i++)
-cin >> p[i].Name >> p[i].age;
-Person** q = new Person * [n];
-for (int i = 0; i < n; i++)
-q[i] = &p[i];
-sort(q, n);
-for (int i = 0; i < n; i++)
-cout << q[i]->Name << q[i]->age <<"\n";
-
-return 0;
+int main() { 
+  int n,z;
+  cin >> n;
+  int A[n];
+  for(int i=0; i<n; cin >> A[i++]){}
+  int *x= A;
+  z=*x;
+  sort(A,n);
+  for(int i=0; i<n; cout << " " << A[i++]){}
+  return 0;
 }
 
