@@ -2,9 +2,9 @@
 #include <cstring>
 #include <cmath>
 #include <iostream>
-using namespace std;
 typedef int digit;
 typedef unsigned long int size_length; 
+using namespace std;
  
 struct long_value { 
   digit *values; 
