@@ -1,8 +1,7 @@
-#include <iostream>
-using namespace std;
-
 /*Написать структуру хранящую рациональные числа в виде несократимых дробей.
 Перегрузить арифметические операторы и операторы сравнений*/
+#include <iostream>
+using namespace std;
 
 int nod(int a, int b){
     if ((a%b)>0){
