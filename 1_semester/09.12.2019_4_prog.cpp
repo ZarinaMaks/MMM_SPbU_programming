@@ -1,31 +1,34 @@
 //Написать функцию сортировки массива, использующую указательную арифметику вместо обращения по индексам. 
 #include <iostream>
-#include <string>
 using namespace std;
 
-int sort(int *array,int k) {
-int t=0; k=0;
-int *i=array+k;
-for(int *x=array; x< i-1 ; x++) {
-   for(int *y=array; y< i-k ; y++) {
-      if(*y>*(y+1)) {
-          t=*y;
-          *y=*(y+1);
-          *(y+1)=t; }
-   }
-        k++; 
+int bubblesort(int *arr,int k){
+    int temp;
+    int *i=arr+k;
+    k=0;
+    for(int *p=arr; p<(i-1); p++){
+    for(int *q=arr; q<(i-k); q++){
+        if((*q)>(*(q+1))){
+            temp=*q;
+            *q=*(q+1);
+            *(q+1)=temp;
+        }
+        
+    }
+    k++;
+    
 }
 }
 
 int main() { 
-  int n,z;
-  cin >> n;
-  int A[n];
-  for(int i=0; i<n; cin >> A[i++]){}
-  int *x= A;
-  z=*x;
-  sort(A,n);
-  for(int i=0; i<n; cout << " " << A[i++]){}
-  return 0;
+    int n,x;
+    cin >> n;
+    int A[n];
+    for(int i=0; i<n; cin>>A[i++]) {}
+    int *p= A;
+    x=*p;
+    bubblesort(A,n);
+    for(int i=0; i<n; cout <<" "<<A[i++]){}
+    return 0;
+    
 }
-
