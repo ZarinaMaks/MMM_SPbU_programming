@@ -24,7 +24,7 @@ int B[k];
 for (int i=0; i<n ; i++) {
 if (A[i] % 2 == 1) {
    B[j]=A[i]; 
-   cout << B[j];
+   cout << B[j] << " ";
    j++;
 }
 }
