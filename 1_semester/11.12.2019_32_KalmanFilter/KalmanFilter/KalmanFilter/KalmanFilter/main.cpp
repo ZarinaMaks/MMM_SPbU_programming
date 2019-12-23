@@ -5,7 +5,7 @@
  * It is useful to estimate a state vector and correct the estimation by using measures taken from sensors.
  * Its main uses is for tracking or data fusion.
  * It implements the algorithm directly.
- * This is a basic KalmanFilter implementation in C++ using the Eigen (version  library:
+ * This is a basic KalmanFilter implementation in C++ using the Eigen (library version: 3.2.10)
  * http://eigen.tuxfamily.org/index.php?title=Main_Page
  */
 #include <iostream>
