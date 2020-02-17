@@ -1,5 +1,0 @@
-﻿  kfilter_test.cpp
-C:\Users\zarmm\Desktop\KalmanFilter\KalmanFilter\KalmanFilter\kfilter_test.cpp(64,23): warning C4018: '<': signed/unsigned mismatch
-  main.cpp
-  Generating Code...
-  KalmanFilter.vcxproj -> C:\Users\zarmm\Desktop\KalmanFilter\KalmanFilter\Debug\KalmanFilter.exe
