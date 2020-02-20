@@ -3,55 +3,67 @@
  */
 
 #include <iostream>
-#include <stack> 
+#include <cstdlib>
+#include <cstdio>
 using namespace std;
- 
-   class stack {
-	      public:
-	        	stack(size_t size): top(0), data(new T[size]) {}
-          bool empty() { return top == 0; }
-          void push(T x) { data[top++] = x; }
-	        	T pop() {
-			          if (empty())
-               throw invalid_argument("underflow"); 
-             else
-               return data[--top]; 
-             }
-          void multipop(size_t k) {
-			       while (!empty() && k--)
-			      	pop(); 
-          ~stack() { delete [] data; }
-       private:
-          size_t top; 
-		        T* data; 
-         }
 
-int main() {
-  stack <int> steck;  // creating stack
-  int i = 0;
- 
-  cout << "Enter 6 integer numbers: " << endl;
-  while (i != 10) {
+class stack
+{
+    int sp;
+    char mass[100000];
+
+public:
+    stack()
+    { sp = 0;}
+
+    void pop();
+    void multipop(int k);
+    void push(char x);
+    void clear();
+    int top();
+    bool empty();
+};
+
+int main()
+{
+    stack multistack;
+    int i = 0;
+    cout << "Enter 10 integer numbers: " << endl;
+
+  while (i != 11) {
     int a;
     cin >> a; 
- 
-    steck.push(a);  // adding entered numbers
+    multistack.push(a);
     i++;
   }
   
-  if (steck.empty()) cout << "Stack is not empty";  // checking whether stack is empty
- 
-  cout << "Top stack element: " << steck.top() << endl; // display top element
+  int k = 0;
+  cout << "Enter number of deleting elements k = " << endl;
+  cin >> k;
   
-  cout << "Let's delete top element " << endl;
-  steck.pop();  // deleting top element
-  cout << "Here is the new top element: " << steck.top(); 
+  multistack.multipop(k);
+  cout << "Here is the new top element: " << multistack.top(); 
   
-  cout << "Let's delete k elements" << endl;
-  cin >> size_k;
-  steck.multipop(size_k); //deleting k elements
-  cout << "Here is the new stack: " << steck();
-  
-  system("pause");
-  return 0;
+    return 0;
 }
+
+bool stack::empty()
+{
+    if (sp == 0)
+        return 1;
+    else
+        return 0;
+}
+
+void stack::clear(){ sp = 0;}
+
+void stack::push(char x) { mass[sp++] = x;}
+
+void stack::pop() { sp--;}
+
+void stack::multipop(int k) {
+    for ( int j = 0; j < k; j++)
+        sp--;
+}
+
+int stack::top() {return (mass[sp - 1]);}
