@@ -19,6 +19,8 @@ int main() {
     cin >> a[0];
     if ( (a[i]=='{') || (a[i]=='(') ) { bstack.push(a[i]); }
         else { cout << "Wrong brackets combination" << endl; }
+        
+    cout << "Enter other elements: " << endl;
     
     
     for (int i=1; i < n; i++) {
@@ -27,7 +29,7 @@ int main() {
           bstack.push(a[i]);
         }
         else
-        if (( (a[i]==')') && (bstack.top()=='{') ) || ( (a[i]==')') && (bstack.top()=='{') ) || (bstack.empty() == true)) {
+        if (( (a[i]==')') && (bstack.top()=='{') ) || ( (a[i]==')') && (bstack.top()=='{') )) {
           cout << "Wrong brackets combination" << endl;
         }
         else {bstack.pop();}
