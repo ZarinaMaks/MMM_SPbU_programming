@@ -1,8 +1,3 @@
-/* (10 баллов)
- * С помощью <stack> из STL написать программу для проверки корректности скобочной последовательности. 
- * Используются скобки “{“, “}”, “(”, “)”
- */
- 
 #include <iostream>
 #include <stack> 
 using namespace std;
@@ -25,18 +20,20 @@ int main() {
         cin >> a[i];
         if ( (a[i]=='{') || (a[i]=='(') ) { bstack.push(a[i]); }
         
-        if (( (a[i]==')') && (bstack.top()=='{') ) || ( (a[i]==')') && (bstack.top()=='{') )) {
+      /*  if (( (a[i]==')') && (bstack.top()=='{') ) || ( (a[i]==')') && (bstack.top()=='{') )) {
           cout << "Wrong brackets combination" << endl;
-        }
-        else {bstack.pop();}
-        
+        } */
+        if (( (a[i]=='}') && (bstack.top()=='{') ) || ( (a[i]==')') && (bstack.top()=='(') )) {bstack.pop();}
+        else {cout << "Wrong brackets combination" << endl;}
+    }
+    
+            
         if (bstack.empty() == true) {
           cout << "Correct brackets combination" << endl;
         }
         else {
           cout << "Wrong brackets combination" << endl;
         }
-    }
       system("pause");
       return 0;
 }
