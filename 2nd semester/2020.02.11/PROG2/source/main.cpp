@@ -16,18 +16,15 @@ int main() {
     string a;
     cout << "Enter the first element: " << endl;
     cin >> a[0];
-    if ( (a[i]=='{') || (a[i]=='(') ) { bstack.push(a[i]); }
+    if ( (a[0]=='{') || (a[0]=='(') ) { bstack.push(a[0]); }
         else { cout << "Wrong brackets combination" << endl; }
         
     cout << "Enter other elements: " << endl;
     
-    
     for (int i=1; i < n; i++) {
-        cin >> a;
-        if ( (a[i]=='{') || (a[i]=='(') ) {
-          bstack.push(a[i]);
-        }
-        else
+        cin >> a[i];
+        if ( (a[i]=='{') || (a[i]=='(') ) { bstack.push(a[i]); }
+        
         if (( (a[i]==')') && (bstack.top()=='{') ) || ( (a[i]==')') && (bstack.top()=='{') )) {
           cout << "Wrong brackets combination" << endl;
         }
