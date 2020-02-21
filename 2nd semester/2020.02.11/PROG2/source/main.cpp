@@ -3,7 +3,7 @@
  * Используются скобки “{“, “}”, “(”, “)”
  */
  
- #include <iostream>
+#include <iostream>
 #include <stack> 
 using namespace std;
  
@@ -15,19 +15,19 @@ int main() {
     int i = 0;
     
     while (i != n) {
-        char a;
+        string a;
         cin >> a;
-        if ( a=='{' || a=='(') {
-          bstack.push(a);
+        if ( (a[i]=='{') || (a[i]=='(') ) {
+          bstack.push(a[i]);
           i++;
         }
         else
-        if ( a==')' && bstack.top=='{' ) || ( a==')' && bstack.top=='{' ) || (bstack.empty == true) {
+        if (( (a[i]==')') && (bstack.top()=='{') ) || ( (a[i]==')') && (bstack.top()=='{') ) || (bstack.empty() == true)) {
           cout << "Wrong brackets combination" << endl;
         }
-        else {bstack.pop;}
+        else {bstack.pop();}
         
-        if (bstack.empty == true) {
+        if (bstack.empty() == true) {
           cout << "Correct brackets combination" << endl;
         }
         else {
@@ -37,4 +37,3 @@ int main() {
       system("pause");
       return 0;
 }
-
