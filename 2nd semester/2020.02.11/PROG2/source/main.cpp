@@ -14,12 +14,17 @@ int main() {
     cin >> n;
     int i = 0;
     
-    while (i != n) {
-        string a;
+    string a;
+    cout << "Enter the first element: " << endl;
+    cin >> a[0];
+    if ( (a[i]=='{') || (a[i]=='(') ) { bstack.push(a[i]); }
+        else { cout << "Wrong brackets combination" << endl; }
+    
+    
+    for (int i=1; i < n; i++) {
         cin >> a;
         if ( (a[i]=='{') || (a[i]=='(') ) {
           bstack.push(a[i]);
-          i++;
         }
         else
         if (( (a[i]==')') && (bstack.top()=='{') ) || ( (a[i]==')') && (bstack.top()=='{') ) || (bstack.empty() == true)) {
