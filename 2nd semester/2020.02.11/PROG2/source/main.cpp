@@ -12,7 +12,6 @@ int main() {
     cout << "Enter even number of elements:"<< endl;
     int n;
     cin >> n;
-    int i = 0;
     
     string a;
     cout << "Enter the first element: " << endl;
