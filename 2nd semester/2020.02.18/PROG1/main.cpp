@@ -34,6 +34,7 @@ int main()
     fin.close();
     fout.close();
     */
+  
   fs fstream fs;
   fs.open (path, fstream::in | fstream::out | fstream::app);
   if (!fs.is_open())
