@@ -31,7 +31,7 @@ int main()
             cout << ch;
         }
         
-        //записываем в файл элементы
+        //записываем в файл элементы:
         int a;
         cout << "Enter new numbers: " << endl;
         cin >> a;
