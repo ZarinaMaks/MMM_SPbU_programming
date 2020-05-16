@@ -50,6 +50,23 @@ int main()
       cout << "Press 1 for reading all numbers from file. " << endl;
       cin >> value;
 
+=======
+  
+  fs fstream fs;
+  fs.open (path, fstream::in | fstream::out | fstream::app);
+  if (!fs.is_open())
+  {
+      cout << "Opening myFile error!" << endl;
+  }
+  else
+      {
+      string msg;
+      int value;
+      cout << "MyFile was successfully opened!" << endl;
+      cout << "Press 0 for saving entered numbers to file. " << endl;
+      cout << "Press 1 for reading all numbers from file. " << endl;
+      cin >> value;
+
       if (value == 0)
       {
           cin >> msg;
