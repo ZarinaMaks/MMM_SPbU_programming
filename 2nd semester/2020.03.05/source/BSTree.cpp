@@ -9,7 +9,7 @@ BSTree::BSTree() {
 
 }
 BSTree::Node* BSTree::CreateLeaf(int key) {
-    Node* N = new node;
+    Node* N = new Node;
     N->key=key;
     N->left=NULL;
     N->right=NULL;
@@ -30,7 +30,7 @@ void BSTree::RemoveSubTree(BSTree::Node *Ptr) {
         {
             RemoveSubTree(Ptr->right);
         }
-        cout << Deleting Node containing key: << Ptr->key << endl;
+        cout << "Deleting Node containing key:" << Ptr->key << endl;
         delete Ptr;
     }
 }
@@ -93,7 +93,7 @@ void BSTree::PrintInOrderPrivate(Node* Ptr){
     }
 }
 
-int HeightOfTree(Node* Ptr) {
+int BSTree::HeightOfTree(Node* Ptr) {
     if (Ptr == 0) {
         return 0;
     }
@@ -113,7 +113,7 @@ int HeightOfTree(Node* Ptr) {
     return max+1;
 
 }
-int DepthOfTree(Node* Ptr){
+int BSTree::DepthOfTree(Node* Ptr){
     if(Ptr->parent == NULL)
     {
         return 0;
