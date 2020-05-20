@@ -6,7 +6,7 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "BSTree.cpp"
+#include "BSTree.h"
  using namespace std;
 
 
@@ -17,14 +17,16 @@
 
      cout << "Printing the tree in order BEFORE adding numbers\n";
      myTree.PrintInOrder();
-     for(int i = 0; i < 16; i++)
+     for(int i = 0; i < 8; i++)
      {
-         myTree.AddLeaf(TreeKeys[i]);
+         //myTree.AddLeaf(TreeKeys[i]);
+         //Node* CurrentNode = myTree.AddLeaf(TreeKeys[i]);
+         cout << "Printing the depth of " << i << " of BSTree:" << myTree.DepthOfTree(myTree.AddLeaf(TreeKeys[i])) << endl;
      };
      cout << "Printing the tree in order AFTER adding numbers\n";
      myTree.PrintInOrder();
 
-     cout << "Printing the depth of BSTree:" << myTree.DepthOfTree() << endl;
+     //cout << "Printing the depth of BSTree:" << myTree.DepthOfTree() << endl;
      cout << "Printing the height of BSTree:" << myTree.HeightOfTree() << endl;
 
 

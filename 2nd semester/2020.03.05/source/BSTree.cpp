@@ -6,20 +6,21 @@ using namespace std;
 
 BSTree::BSTree() {
     Root = NULL;
-
 }
-BSTree::Node* BSTree::CreateLeaf(int key) {
+
+Node* BSTree::CreateLeaf(int key, Node* Ptr) {
     Node* N = new Node;
     N->key=key;
     N->left=NULL;
     N->right=NULL;
+    N->parent = Ptr;
     return N;
 }
 
 BSTree::~BSTree() {
     RemoveSubTree(Root);
 }
-void BSTree::RemoveSubTree(BSTree::Node *Ptr) {
+void BSTree::RemoveSubTree(Node *Ptr) {
     if(Ptr != NULL)
     {
         if (Ptr->left != NULL)
@@ -35,40 +36,46 @@ void BSTree::RemoveSubTree(BSTree::Node *Ptr) {
     }
 }
 
-void BSTree::AddLeaf(int key){
-    AddLeafPrivate(key, Root);
+Node* BSTree::AddLeaf(int key){
+    return AddLeafPrivate(key, Root, NULL);
 }
-void BSTree::AddLeafPrivate(int key, Node* Ptr){
+
+Node* BSTree::AddLeafPrivate(int key, Node* Ptr, Node* parent){
     if(Root == NULL)
     {
-        Root = CreateLeaf(key);
+        Root = CreateLeaf(key, NULL);
     }
     else if(key < Ptr->key)
     {
         if(Ptr->left != NULL)
         {
-            AddLeafPrivate((key, Ptr->left));
+            AddLeafPrivate(key, Ptr->left, Ptr);
         }
         else
         {
-            Ptr->left = CreateLeaf(key);
+            Ptr->left = CreateLeaf(key, Ptr);
+            return Ptr->left;
+
         }
     }
     else if(key > Ptr->key)
     {
         if(Ptr->right != NULL)
         {
-            AddLeafPrivate((key, Ptr->right));
+            AddLeafPrivate(key, Ptr->right, Ptr);
         }
         else
         {
-            Ptr->right = CreateLeaf(key);
+            Ptr->right = CreateLeaf(key, Ptr);
+            return Ptr->right;
         }
     }
     else
     {
-        cout << "The key" << key << "has already been added to the BSTree.\n"
+        cout << "The key" << key << "has already been added to the BSTree.\n";
+        return Ptr;
     }
+
 }
 
 void BSTree::PrintInOrder() {
@@ -81,7 +88,7 @@ void BSTree::PrintInOrderPrivate(Node* Ptr){
         {
             PrintInOrderPrivate(Ptr->left);
         }
-        cout << Ptr->Key << " ";
+        cout << Ptr->key << " ";
         if (Ptr->right != NULL)
         {
             PrintInOrderPrivate(Ptr->right);
@@ -93,18 +100,24 @@ void BSTree::PrintInOrderPrivate(Node* Ptr){
     }
 }
 
-int BSTree::HeightOfTree(Node* Ptr) {
-    if (Ptr == 0) {
+
+int BSTree::HeightOfTree() {
+    HeightOfTreePrivate(Root);
+}
+
+
+int BSTree::HeightOfTreePrivate(Node* Ptr) {
+    if (Ptr == NULL) {
         return 0;
     }
     int left, right;
     if (Ptr->left != NULL) {
-        left = HeightOfTree(Ptr->left);
+        left = HeightOfTreePrivate(Ptr->left);
     } else {
         left = -1;
     }
     if (Ptr->right != NULL) {
-        right = HeightOfTree(Ptr->right);
+        right = HeightOfTreePrivate(Ptr->right);
     }
     else {
         right = -1;
@@ -113,7 +126,12 @@ int BSTree::HeightOfTree(Node* Ptr) {
     return max+1;
 
 }
-int BSTree::DepthOfTree(Node* Ptr){
+
+
+int BSTree::DepthOfTree(Node* Ptr) {
+    DepthOfTreePrivate(Ptr);
+}
+int BSTree::DepthOfTreePrivate(Node* Ptr){
     if(Ptr->parent == NULL)
     {
         return 0;
