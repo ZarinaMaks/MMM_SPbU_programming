@@ -1,0 +1,13 @@
+g++ -o MyProg main.cpp Braces.cpp 
+Файлы ./1_test_out.txt и ./1_test_res.txt идентичны
+Файлы ./2_test_out.txt и ./2_test_res.txt идентичны
+Файлы ./3_test_out.txt и ./3_test_res.txt идентичны
+Файлы ./4_test_out.txt и ./4_test_res.txt идентичны
+Файлы ./5_test_out.txt и ./5_test_res.txt идентичны
+Файлы ./6_test_out.txt и ./6_test_res.txt идентичны
+Файлы ./7_test_out.txt и ./7_test_res.txt идентичны
+Файлы ./8_test_out.txt и ./8_test_res.txt идентичны
+Файлы ./9_test_out.txt и ./9_test_res.txt идентичны
+Файлы ./10_test_out.txt и ./10_test_res.txt идентичны
+количество пройденных тестов
+3
