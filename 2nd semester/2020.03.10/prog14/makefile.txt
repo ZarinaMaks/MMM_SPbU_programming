@@ -1,0 +1,13 @@
+all: main
+
+main: AVLTree.o main.o
+	g++ AVLTree.o main.o -o main
+
+AVLTree.o: 
+	g++ -c ./source/AVLTree.cpp -I ./headers
+
+main.o:
+	g++ -c ./source/AVLTree.cpp -I ./headers
+
+clean:
+	rm -f *.o

@@ -1,0 +1,13 @@
+all: main
+
+main: CardGame.o main.o
+	g++ CardGame.o main.o -o main
+
+CardGame.o: 
+	g++ -c ./source/CardGame.cpp -I ./headers
+
+main.o:
+	g++ -c ./source/CardGame.cpp -I ./headers
+
+clean:
+	rm -f *.o

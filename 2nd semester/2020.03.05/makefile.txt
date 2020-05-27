@@ -1,2 +1,13 @@
-make: main.cpp
-g++ main.cpp -o MyProg
+all: main
+
+main: BSTree.o main.o
+	g++ BSTree.o main.o -o main
+
+BSTree.o: 
+	g++ -c ./source/BSTree.cpp -I ./headers
+
+main.o:
+	g++ -c ./source/BSTree.cpp -I ./headers
+
+clean:
+	rm -f *.o

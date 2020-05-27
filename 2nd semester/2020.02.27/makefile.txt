@@ -1,0 +1,13 @@
+all: main
+
+main: Dispatcher.o main.o
+	g++ Dispatcher.o main.o -o main
+
+Dispatcher.o: 
+	g++ -c ./source/Dispatcher.cpp -I ./headers
+
+main.o:
+	g++ -c ./source/Dispatcher.cpp -I ./headers
+
+clean:
+	rm -f *.o
