@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cmath>
 #include <locale>
+
 using namespace std;
 
 void Swap (int *A, int i, int j)
