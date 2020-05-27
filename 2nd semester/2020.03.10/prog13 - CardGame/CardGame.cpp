@@ -14,10 +14,6 @@ CardGame::CardGame() {
     CardEffect();
     EnchantmentEffect();
 }
-int CardGame::GetCurrentTurn() const {
-    return CardGame::MyCurrentTurn;
-
-}
 void CardGame::Reset() {
     MyCurrentTurn = 1;
     return;
