@@ -57,26 +57,25 @@ CardGame CGame;
 void PrintIntro() {
     cout << "Welcome to Magic The Colouring, a fun Card game!\n";
     cout << endl;
-    cout << "         _              _                                 _       " << endl;
-    cout << "  _ __  | | __ __ _   _(_)_ __   __ _    ___ __ _ _ __ __| |___   " << endl;
-    cout << " | '_ \\| |/ _`  | | | | | '_ \\/ _` |  / __/ _` | '__/ _` / __|  " << endl;
-    cout << " | |_)  | | (_|  | |_| | | | | | (_| | (_| (_| | | | (_| \\|__\\  " << endl;
-    cout << " | .__/ |_|\\__,_|\\__ |_|_| |_|\\__,| \\___\\_,_|_| \\__,_|___/  " << endl;
-    cout << " |_|              |___/          |___/                            " << endl;
-    cout << "                       MAGIC THE COLOURING                        " << endl;
-    cout << "                                                                  " << endl;
-    cout << "                                                                  " << endl;
-    cout << "                       3 types of action Cards:                   " << endl;
-    cout << "          1) ATTACK  - damaging an opponent:                      " << endl;
-    cout << "              1 - red attack = 4 pts, 2 - green damage = 3 pts    " << endl;
-    cout << "              3 - white damage = 1 pts, 4 - black damage = 10pts  " << endl;
-    cout << "          2) 5 - HEAL - raise 2 HP                                " << endl;
-    cout << "          3) 6 - ENCHANTMENT - take 5 Cards more                  " << endl;
-    cout << "                           7 - EXIT GAME                          " << endl;
+    cout << "          _              _                                 _       " << endl;
+    cout << "   _ __  | | __ __ _   _(_)_ __   __ _    ___ __ _ _ __ __| |___   " << endl;
+    cout << "  | '_ \\| |/ _`  | | | | | '_ \\/ _` |  / __/ _` | '__/ _` / __|  " << endl;
+    cout << "  | |_)  | | (_|  | |_| | | | | | (_| | (_| (_| | | | (_| \\|__\\  " << endl;
+    cout << "  | .__/ |_|\\__,_|\\__ |_|_| |_|\\__,| \\___\\_,_|_| \\__,_|___/  " << endl;
+    cout << "  |_|              |___/          |___/                            " << endl;
+    cout << "                       MAGIC THE COLOURING                         " << endl;
+    cout << "                                                                   " << endl;
+    cout << "                                                                   " << endl;
+    cout << "                       3 types of action Cards:                    " << endl;
+    cout << "          1) ATTACK  - damaging an opponent:                       " << endl;
+    cout << "              1 - red attack = 4 pts, 2 - green damage = 3 pts     " << endl;
+    cout << "              3 - white damage = 1 pts, 4 - black damage = 10pts   " << endl;
+    cout << "          2) 5 - HEAL - raise 2 HP                                 " << endl;
+    cout << "          3) 6 - ENCHANTMENT - take 5 Cards more                   " << endl;
+    cout << "                           7 - EXIT GAME                           " << endl;
 
     return;
 }
-
 bool AskToPlayAgain() {
     cout << "Do you want to play again(y/n)? ";
     string Response = "";
@@ -87,7 +86,7 @@ bool AskToPlayAgain() {
 int main ( ) {
     do {
         PlayGame();
-        CGame.ResetTryNumber(); //TODO ResetTryNumber
+        //CGame.ResetTryNumber(); <- TODO ResetTryNumber
     }
     while (AskToPlayAgain());
     return 0;
@@ -102,20 +101,52 @@ void PlayGame() {
     auto Player2 = new Player(CGame::CreateDisplayDeck(), 11);
 
     while (NumberOfTurns > 0) {
+
+        //----------Player1----------//
         cout << "Player 1, your turn, this is your deck: " << endl;
-        // Display Deck
+        // Display Deck:
+        Player1.DisplayDeck();
+
         cout << "Player 1, enter your command: " << endl;
         cin >> Command;
         // Play Card() <- while PlayCard false display error
+        if (PlayCard(Command)==true) {
+            string effect = Command;
+            if (effect = CardEffect.find(Сommand)) {
+                Player2.ChangeHPCount(effect);
+            }
+            if (effect = EnchantmentEffect.find(Сommand)) {
+                CGame::CreateDisplayDeck(); //<- TODO add this to previous 5 cards
+            }
+        } else {
+            cout << "Player 1, please, insert a valid command!";
+            cin >> Command;
+        }
         // Apply Effect
+        //--------------------//
 
+
+        //----------Player2----------//
         cout << "Player 2, your turn, this is your deck: " << endl;
-        //"Player 2, your turn, this is your deck"
-        // Display Deck
+        Player1.DisplayDeck();
+
         cout << "Player 2, enter your command: " << endl;
         cin >> Command;
         // Play Card() <- while PlayCard false display error
-        // Apply Effect
+        if (PlayCard(Command)==true) {
+            string effect = Command;
+            if (effect = CardEffect.find(Сommand)) {
+                Player1.ChangeHPCount(effect);
+            }
+            if (effect = EnchantmentEffect.find(Сommand)) {
+                CGame::CreateDisplayDeck(); //<- TODO add this to previous 5 cards
+            }
+        } else {
+            cout << "Player 2, please, insert a valid command!";
+            cin >> Command;
+        }
+        //--------------------//
+
 
         //NumberOfTurns--
 

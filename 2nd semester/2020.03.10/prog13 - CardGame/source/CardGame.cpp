@@ -1,10 +1,10 @@
 //  CardGame.cpp
 //  Created by Zarina Maksudova
-
 #include "CardGame.h"
 #include <iostream>
 #include <iterator>
 #include <map>
+#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <cstdlib>
@@ -14,6 +14,10 @@ CardGame::CardGame() {
     CardEffect();
     EnchantmentEffect();
 }
+/*int CardGame::GetCurrentTurn() const {
+    return CardGame::MyCurrentTurn;
+
+}*/
 void CardGame::Reset() {
     MyCurrentTurn = 1;
     return;
@@ -23,7 +27,7 @@ void CardGame::CardEffect() {
     CardEffectM.insert(make_pair("green attack", -3));
     CardEffectM.insert(make_pair("write attack", -1));
     CardEffectM.insert(make_pair("black attack", -10));
-    CardEffectM.insert(make_pair("enchantment", 5));
+    // CardEffectM.insert(make_pair("enchantment", 5));
     CardEffectM.insert(make_pair("heal", 2));
 
 }
@@ -42,7 +46,11 @@ Player::Player(map<string, int> deck, int hpcount) {
 
 
 void Player::DisplayDeck() {
-    //TODO display deck by using iterator map key and value pairs
+    for(map<string, int>::const_iterator it = Deck.begin();
+        it != Deck.end(); ++it) {
+        cout << it->first << " " << it->second.first << " " << it->second.second << "\n";
+
+    }
 }
 
 bool Player::PlayCard(string Card) {

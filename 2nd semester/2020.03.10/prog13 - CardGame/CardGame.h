@@ -25,11 +25,19 @@ public:
    { suit = s; number = n; }
 
    void display ( );
+};
+
+enum class CommandStatus {
+   Invalid_Status,
+   OK,
+   Wrong_Word,
+   No_Card
 };*/
 
 class Player {
 
 public:
+
     Player(map<string, int> deck, int hpcount);
     bool PlayCard(string Card);
     void AddMoreCards(map<string, int> newdeck);
@@ -37,6 +45,7 @@ public:
     void DisplayDeck();
 
 private:
+
     map<string, int> Deck;
     int HPCount;
 }
@@ -52,17 +61,14 @@ public:
     int GetMaxTurns() const;
     int GetCurrentTurn() const;
     bool IsGameWon(string Command) const;
-    CommandStatus CheckGuessValidity(string /*TODO*/) const;
 
     void Reset();
     void ResetTurnNumber();
     string GetRandomCard();
     map<string, int> CreateDisplayDeck();
-    //void CreateDisplay2Deck();
-
+    //CommandStatus CheckGuessValidity(string /*TODO*/) const;
     //counting HPs, increasing turn number, assuming valid command
-    HPCount SubmitValidGuess(string /*TODO*/);
-
+    //HPCount SubmitValidGuess(string /*TODO*/);
 
 private:
 
@@ -74,9 +80,9 @@ private:
     map<string, int> Deck_1Player;
     map<string, int> Deck_2Player;
 
-    bool IsCommand(string) const;
-    int MyCurrentTurn; = 1;
-
+    //bool IsCommand(string) const;
+    //int MyCurrentTurn; = 1;
+    //int MyMaxTurns = 5;
     //string CommandBar[6] = {"red attack", "green attack", "write attack", "black attack", "heal", "enchantment",};
 };
 
