@@ -101,54 +101,50 @@ void PlayGame() {
     auto Player2 = new Player(CGame::CreateDisplayDeck(), 11);
 
     while (NumberOfTurns > 0) {
+        cout << "Beginning of turn " << NumberOfTurns << endl;
 
         //----------Player1----------//
         cout << "Player 1, your turn, this is your deck: " << endl;
         // Display Deck:
         Player1.DisplayDeck();
+        string Command;
 
-        cout << "Player 1, enter your command: " << endl;
-        cin >> Command;
         // Play Card() <- while PlayCard false display error
-        if (PlayCard(Command)==true) {
-            string effect = Command;
-            if (effect = CardEffect.find(Сommand)) {
-                Player2.ChangeHPCount(effect);
-            }
-            if (effect = EnchantmentEffect.find(Сommand)) {
-                CGame::CreateDisplayDeck(); //<- TODO add this to previous 5 cards
-            }
-        } else {
-            cout << "Player 1, please, insert a valid command!";
+        do {
+            cout << "Player 1, enter your command: " << endl;
             cin >> Command;
-        }
-        // Apply Effect
+        } while (Player1.PlayCard(Command)==false);
+
+        int value = CGame.GetCardEffect(Сommand);
+        int HP2 = Player2.ChangeHPCount(value);
+        cout << "Effect of " << Command << " is " << value << endl;
+        cout << "Now Player 2 HPs: " << HP2 << endl;
+        //cout << "Now Player 1 HPs: " << HP1 << endl;
+        //<- TODO add this to previous 5 cards
         //--------------------//
 
 
         //----------Player2----------//
         cout << "Player 2, your turn, this is your deck: " << endl;
-        Player1.DisplayDeck();
+        // Display Deck:
+        Player2.DisplayDeck();
 
-        cout << "Player 2, enter your command: " << endl;
-        cin >> Command;
         // Play Card() <- while PlayCard false display error
-        if (PlayCard(Command)==true) {
-            string effect = Command;
-            if (effect = CardEffect.find(Сommand)) {
-                Player1.ChangeHPCount(effect);
-            }
-            if (effect = EnchantmentEffect.find(Сommand)) {
-                CGame::CreateDisplayDeck(); //<- TODO add this to previous 5 cards
-            }
-        } else {
-            cout << "Player 2, please, insert a valid command!";
+        do {
+            cout << "Player 2, enter your command: " << endl;
             cin >> Command;
-        }
+        } while (Player2.PlayCard(Command)==false);
+
+        int value = CGame.GetCardEffect(Сommand);
+        int HP1 = Player1.ChangeHPCount(value);
+        cout << "Effect of " << Command << " is " << value << endl;
+        cout << "Now Player 1 HPs: " << HP1 << endl;
+        //cout << "Now Player 2 HPs: " << HP2 << endl;
+        //<- TODO add this to previous 5 cards
         //--------------------//
 
-
-        //NumberOfTurns--
+        cout << "End of turn " << NumberOfTurns << endl;
+        NumberOfTurns--;
 
     }
     //TODO Player::GetHPCount()
