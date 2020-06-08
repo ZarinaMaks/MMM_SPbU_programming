@@ -1,6 +1,5 @@
 //  CardGame.cpp
 //  Created by Zarina Maksudova
-#include "CardGame.h"
 #include <iostream>
 #include <iterator>
 #include <map>
@@ -8,9 +7,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cstdlib>
+#include "CardGame.h"
 
 CardGame::CardGame() {
-    Reset();
+    //Reset();
     CardEffect();
     EnchantmentEffect();
 }
@@ -18,15 +18,15 @@ CardGame::CardGame() {
     return CardGame::MyCurrentTurn;
 
 }*/
-void CardGame::Reset() {
-    MyCurrentTurn = 1;
-    return;
-}
+/*void CardGame::Reset() {
+   MyCurrentTurn = 1;
+   return;
+}*/
 void CardGame::CardEffect() {
-    CardEffectM.insert(make_pair("red attack", -4));
-    CardEffectM.insert(make_pair("green attack", -3));
-    CardEffectM.insert(make_pair("write attack", -1));
-    CardEffectM.insert(make_pair("black attack", -10));
+    CardEffectM.insert(make_pair("red_attack", -4));
+    CardEffectM.insert(make_pair("green_attack", -3));
+    CardEffectM.insert(make_pair("write_attack", -1));
+    CardEffectM.insert(make_pair("black_attack", -10));
     // CardEffectM.insert(make_pair("enchantment", 5));
     CardEffectM.insert(make_pair("heal", 2));
 
@@ -34,21 +34,21 @@ void CardGame::CardEffect() {
 void CardGame::EnchantmentEffect() {
     EnchantmentEffectM.insert(make_pair("enchantment", 5));
 }
-void CardGame::ResetTurnNumber() {
+/*void CardGame::ResetTurnNumber() {
     MyCurrentTurn = 1;
 
-}
+}*/
 
 Player::Player(map<string, int> deck, int hpcount) {
     Deck = deck;
-    HPcount = hpcount;
+    HPCount = hpcount;
 }
 
 
 void Player::DisplayDeck() {
     for(map<string, int>::const_iterator it = Deck.begin();
         it != Deck.end(); ++it) {
-        cout << it->first << " " << it->second.first << " " << it->second.second << "\n";
+        cout << it->second << " of " << it->first << "\n";
 
     }
 }
@@ -98,6 +98,10 @@ void Player::AddMoreCards(map<string, int> newdeck) {
 
 int Player::ChangeHPCount(int effect){
     HPCount += effect;
+    return HPCount;
+}
+
+int Player::GetHPCount() {
     return HPCount;
 }
 
@@ -213,12 +217,12 @@ map<string, int> CardGame::CreateDisplayDeck() {
    //--------------//
    */
     map<string, int> Deck_Player;
-    for (i = 0; i < 5; i++) {
-        auto card = CGame.GetRandomCard();
+    for (int i = 0; i < 5; i++) {
+        auto card = GetRandomCard();
         //auto effect = CGame.GetCardEffect(card);
 
         //Check if exists:
-        if (Deck.count(Card) == 0) {
+        if (Deck_Player.count(card) == 0) {
             Deck_Player.insert(make_pair(card, 1));
         } else {
             Deck_Player[card]++;

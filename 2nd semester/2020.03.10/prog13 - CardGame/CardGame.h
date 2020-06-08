@@ -6,6 +6,7 @@ The game is a simple guess the word game based on Mastermind.
 */
 #pragma once
 #include <string>
+#include <map>
 using namespace std;
 
 /*class Card {
@@ -38,23 +39,57 @@ class Player {
 
 public:
 
-    Player(map<string, int> deck, int hpcount);
+    Player(map <string, int> deck, int hpcount);
     bool PlayCard(string Card);
     void AddMoreCards(map<string, int> newdeck);
     int ChangeHPCount(int effect);
     void DisplayDeck();
+    int GetHPCount();
 
 private:
 
     map<string, int> Deck;
     int HPCount;
-}
+};
 
 class CardGame {
 
 public:
 
     CardGame();
+
+    int GetCardEffect(string Command);
+    //int GetEnchantmentEffect(string Command);
+    int GetMaxTurns() const;
+    int GetCurrentTurn() const;
+    bool IsGameWon(string Command) const;
+
+    //void Reset();
+    void ResetTurnNumber();
+    string GetRandomCard();
+    map<string, int> CreateDisplayDeck();
+    //CommandStatus CheckGuessValidity(string /*TODO*/) const;
+    //counting HPs, increasing turn number, assuming valid command
+    //HPCount SubmitValidGuess(string /*TODO*/);
+
+private:
+
+    void CardEffect();
+    void EnchantmentEffect();
+    map<string, int> CardEffectM;
+    map<string, int> EnchantmentEffectM;
+
+    map<string, int> Deck_1Player;
+    map<string, int> Deck_2Player;
+
+    //bool IsCommand(string) const;
+    //int MyCurrentTurn; = 1;
+    //int MyMaxTurns = 5;
+    //string CommandBar[6] = {"red attack", "green attack", "write attack", "black attack", "heal", "enchantment",};
+};
+
+
+CardGame();
 
     int GetCardEffect(string Command);
     //int GetEnchantmentEffect(string Command);

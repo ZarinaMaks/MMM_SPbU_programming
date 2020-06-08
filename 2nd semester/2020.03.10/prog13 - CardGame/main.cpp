@@ -35,12 +35,14 @@ STEP 6-7: displaying HP of each player
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "CardGame.h"
+
 using namespace std;
 
 // Function prototypes as outside a class, which we re-use across plays:
 void PrintIntro();
 void PlayGame();
-string GetValidCommand();
+string GetValidInsertedCommand();
 bool AskToPlayAgain();
 void CreateDisplayDeck();
 // instantiate a new game:
@@ -68,8 +70,8 @@ void PrintIntro() {
     cout << "                                                                   " << endl;
     cout << "                       3 types of action Cards:                    " << endl;
     cout << "          1) ATTACK  - damaging an opponent:                       " << endl;
-    cout << "              1 - red attack = 4 pts, 2 - green damage = 3 pts     " << endl;
-    cout << "              3 - white damage = 1 pts, 4 - black damage = 10pts   " << endl;
+    cout << "              1 - red_attack = 4 pts, 2 - green_attack = 3 pts     " << endl;
+    cout << "              3 - white_attack = 1 pts, 4 - black_attack = 10pts   " << endl;
     cout << "          2) 5 - HEAL - raise 2 HP                                 " << endl;
     cout << "          3) 6 - ENCHANTMENT - take 5 Cards more                   " << endl;
     cout << "                           7 - EXIT GAME                           " << endl;
@@ -97,8 +99,8 @@ void PlayGame() {
     int NumberOfTurns = 2;
     PrintIntro();
 
-    auto Player1 = new Player(CGame::CreateDisplayDeck(), 11);
-    auto Player2 = new Player(CGame::CreateDisplayDeck(), 11);
+    auto Player1 = new Player(CGame.CreateDisplayDeck(), 11);
+    auto Player2 = new Player(CGame.CreateDisplayDeck(), 11);
 
     while (NumberOfTurns > 0) {
         cout << "Beginning of turn " << NumberOfTurns << endl;
@@ -106,18 +108,18 @@ void PlayGame() {
         //----------Player1----------//
         cout << "Player 1, your turn, this is your deck: " << endl;
         // Display Deck:
-        Player1.DisplayDeck();
-        string Command;
+        Player1->DisplayDeck();
+        string InsertedCommand;
 
         // Play Card() <- while PlayCard false display error
         do {
-            cout << "Player 1, enter your command: " << endl;
-            cin >> Command;
-        } while (Player1.PlayCard(Command)==false);
+            cout << "Player 1, enter your InsertedCommand: " << endl;
+            cin >> InsertedCommand;
+        } while (Player1->PlayCard(InsertedCommand)==false);
 
-        int value = CGame.GetCardEffect(Сommand);
-        int HP2 = Player2.ChangeHPCount(value);
-        cout << "Effect of " << Command << " is " << value << endl;
+        int value = CGame.GetCardEffect(InsertedCommand);
+        int HP2 = Player2->ChangeHPCount(value);
+        cout << "Effect of " << InsertedCommand << " is " << value << endl;
         cout << "Now Player 2 HPs: " << HP2 << endl;
         //cout << "Now Player 1 HPs: " << HP1 << endl;
         //<- TODO add this to previous 5 cards
@@ -127,17 +129,17 @@ void PlayGame() {
         //----------Player2----------//
         cout << "Player 2, your turn, this is your deck: " << endl;
         // Display Deck:
-        Player2.DisplayDeck();
+        Player2->DisplayDeck();
 
         // Play Card() <- while PlayCard false display error
         do {
-            cout << "Player 2, enter your command: " << endl;
-            cin >> Command;
-        } while (Player2.PlayCard(Command)==false);
+            cout << "Player 2, enter your InsertedCommand: " << endl;
+            cin >> InsertedCommand;
+        } while (Player2->PlayCard(InsertedCommand)==false);
 
-        int value = CGame.GetCardEffect(Сommand);
-        int HP1 = Player1.ChangeHPCount(value);
-        cout << "Effect of " << Command << " is " << value << endl;
+        value = CGame.GetCardEffect(InsertedCommand);
+        int HP1 = Player1->ChangeHPCount(value);
+        cout << "Effect of " << InsertedCommand << " is " << value << endl;
         cout << "Now Player 1 HPs: " << HP1 << endl;
         //cout << "Now Player 2 HPs: " << HP2 << endl;
         //<- TODO add this to previous 5 cards
@@ -149,6 +151,19 @@ void PlayGame() {
     }
     //TODO Player::GetHPCount()
     //compare Player1.HPCount with Player2.HPCount
+    int TotalHP1 = Player1->GetHPCount();
+    int TotalHP2 = Player2->GetHPCount();
+    cout << "Total HP of Player 1: " << TotalHP1 << endl;
+    cout << "Total HP of Player 2: " << TotalHP2 << endl;
+
+    if (TotalHP1 > TotalHP2)
+    {
+        cout << "Congratulations! Player 1 won!!!" << endl;
+    } else if (TotalHP1 < TotalHP2) {
+        cout << "Congratulations! Player 2 won!!!" << endl;
+    } else {
+        cout << "Its a tie!!!" << endl;
+    }
 }
 
-//TODO GetValidCommand
+//TODO GetValidInsertedCommand
