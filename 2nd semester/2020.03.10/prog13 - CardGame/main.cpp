@@ -96,13 +96,14 @@ int main ( ) {
 
 void PlayGame() {
     int NumberOfTurns = 2;
+    int CurrentTurn = NumberOfTurns - 1;
     PrintIntro();
 
     auto Player1 = new Player(CGame.CreateDisplayDeck(), 11);
     auto Player2 = new Player(CGame.CreateDisplayDeck(), 11);
 
     while (NumberOfTurns > 0) {
-        cout << endl << "BEGINNING of turn " << NumberOfTurns << endl;
+        cout << endl << endl << "! --- BEGINNING of turn " << CurrentTurn << " --- !"<< endl << endl;
 
         //----------Player1----------//
         cout << "Player 1, your turn, this is your deck: " << endl;
@@ -111,19 +112,19 @@ void PlayGame() {
 
         // Play Card() <- while PlayCard false display error
         do {
-            cout << "Player 1, enter your InsertedCommand: " << endl;
+            cout << "Player 1, enter your command: " << endl;
             cin >> InsertedCommand;
         } while (Player1->PlayCard(InsertedCommand)==false);
 
         int value = CGame.GetCardEffect(InsertedCommand);
         if (InsertedCommand == "heal") {
             int HP1 = Player1->ChangeHPCount(value);
-            cout << "Effect of " << InsertedCommand << " is " << value << endl;
+            cout << endl <<  "EFFECT of " << InsertedCommand << " is " << value << endl;
             cout << "Now Player 1 HPs: " << HP1 << endl;
         } else if (InsertedCommand == "enchantment") {
             auto newDeck_Player = CGame.CreateDisplayDeck();
             Player1->AddMoreCards(newDeck_Player);
-            cout << endl << "Now Player 1 has: ";
+            cout << endl << "Now Player 1 has: " << endl;
             Player1->DisplayDeck();
             cout << endl;
 
@@ -141,7 +142,7 @@ void PlayGame() {
 
         // Play Card() <- while PlayCard false display error
         do {
-            cout << "Player 2, enter your InsertedCommand: " << endl;
+            cout << "Player 2, enter your command: " << endl;
             cin >> InsertedCommand;
         } while (Player2->PlayCard(InsertedCommand)==false);
 
@@ -154,7 +155,7 @@ void PlayGame() {
         } else if (InsertedCommand == "enchantment") {
             auto newDeck_Player = CGame.CreateDisplayDeck();
             Player2->AddMoreCards(newDeck_Player);
-            cout << endl << "Now Player 2 has: ";
+            cout << endl << "Now Player 2 has: " << endl;
             Player2->DisplayDeck();
             cout << endl;
 
@@ -165,8 +166,9 @@ void PlayGame() {
         }
         //--------------------//
 
-        cout << "End of turn " << NumberOfTurns << endl;
+        cout << endl << endl << "! --- END of turn " << CurrentTurn << " --- !"<< endl << endl;
         NumberOfTurns--;
+        CurrentTurn++;
 
     }
     int TotalHP1 = Player1->GetHPCount();

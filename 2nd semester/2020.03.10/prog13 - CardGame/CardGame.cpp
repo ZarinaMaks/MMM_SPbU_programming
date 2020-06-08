@@ -44,7 +44,7 @@ bool Player::PlayCard(string Card) {
     //Check if exists:
     if (Deck.count(Card) == 0)
     {
-        cout << "UPS! You don't have such card - enter a valid card name!" << endl;
+        cout << endl << "UPS! You don't have such card - enter a valid card name!" << endl;
         return false;
     }
 
@@ -119,7 +119,7 @@ map<string, int> CardGame::CreateDisplayDeck() {
         } else {
             Deck_Player[card]++;
         }
-        cout << card << "; ";
+        //cout << card << "; ";
     }
     return Deck_Player;
 }
