@@ -1,3 +1,4 @@
+//  Created by Zarina Maksudova
 /*
 (10-40 баллов) Написать программу для настольной карточной игры (в текстовой форме).
 - Игрок выбирает действия (2-3 типа)
@@ -88,13 +89,11 @@ bool AskToPlayAgain() {
 int main ( ) {
     do {
         PlayGame();
-        //CGame.ResetTryNumber(); <- TODO ResetTryNumber
     }
     while (AskToPlayAgain());
     return 0;
 }
 
-//Non-checked:
 void PlayGame() {
     int NumberOfTurns = 2;
     PrintIntro();
@@ -103,11 +102,10 @@ void PlayGame() {
     auto Player2 = new Player(CGame.CreateDisplayDeck(), 11);
 
     while (NumberOfTurns > 0) {
-        cout << "Beginning of turn " << NumberOfTurns << endl;
+        cout << endl << "BEGINNING of turn " << NumberOfTurns << endl;
 
         //----------Player1----------//
         cout << "Player 1, your turn, this is your deck: " << endl;
-        // Display Deck:
         Player1->DisplayDeck();
         string InsertedCommand;
 
@@ -118,17 +116,27 @@ void PlayGame() {
         } while (Player1->PlayCard(InsertedCommand)==false);
 
         int value = CGame.GetCardEffect(InsertedCommand);
-        int HP2 = Player2->ChangeHPCount(value);
-        cout << "Effect of " << InsertedCommand << " is " << value << endl;
-        cout << "Now Player 2 HPs: " << HP2 << endl;
-        //cout << "Now Player 1 HPs: " << HP1 << endl;
-        //<- TODO add this to previous 5 cards
+        if (InsertedCommand == "heal") {
+            int HP1 = Player1->ChangeHPCount(value);
+            cout << "Effect of " << InsertedCommand << " is " << value << endl;
+            cout << "Now Player 1 HPs: " << HP1 << endl;
+        } else if (InsertedCommand == "enchantment") {
+            auto newDeck_Player = CGame.CreateDisplayDeck();
+            Player1->AddMoreCards(newDeck_Player);
+            cout << endl << "Now Player 1 has: ";
+            Player1->DisplayDeck();
+            cout << endl;
+
+        } else {
+            int HP2 = Player2->ChangeHPCount(value);
+            cout << "Effect of " << InsertedCommand << " is " << value << endl;
+            cout << "Now Player 2 HPs: " << HP2 << endl;
+        }
         //--------------------//
 
 
         //----------Player2----------//
         cout << "Player 2, your turn, this is your deck: " << endl;
-        // Display Deck:
         Player2->DisplayDeck();
 
         // Play Card() <- while PlayCard false display error
@@ -137,20 +145,30 @@ void PlayGame() {
             cin >> InsertedCommand;
         } while (Player2->PlayCard(InsertedCommand)==false);
 
+
         value = CGame.GetCardEffect(InsertedCommand);
-        int HP1 = Player1->ChangeHPCount(value);
-        cout << "Effect of " << InsertedCommand << " is " << value << endl;
-        cout << "Now Player 1 HPs: " << HP1 << endl;
-        //cout << "Now Player 2 HPs: " << HP2 << endl;
-        //<- TODO add this to previous 5 cards
+        if (InsertedCommand == "heal") {
+            int HP2 = Player2->ChangeHPCount(value);
+            cout << "Effect of " << InsertedCommand << " is " << value << endl;
+            cout << "Now Player 2 HPs: " << HP2 << endl;
+        } else if (InsertedCommand == "enchantment") {
+            auto newDeck_Player = CGame.CreateDisplayDeck();
+            Player2->AddMoreCards(newDeck_Player);
+            cout << endl << "Now Player 2 has: ";
+            Player2->DisplayDeck();
+            cout << endl;
+
+        } else {
+            int HP1 = Player1->ChangeHPCount(value);
+            cout << "Effect of " << InsertedCommand << " is " << value << endl;
+            cout << "Now Player 1 HPs: " << HP1 << endl;
+        }
         //--------------------//
 
         cout << "End of turn " << NumberOfTurns << endl;
         NumberOfTurns--;
 
     }
-    //TODO Player::GetHPCount()
-    //compare Player1.HPCount with Player2.HPCount
     int TotalHP1 = Player1->GetHPCount();
     int TotalHP2 = Player2->GetHPCount();
     cout << "Total HP of Player 1: " << TotalHP1 << endl;
@@ -165,5 +183,3 @@ void PlayGame() {
         cout << "Its a tie!!!" << endl;
     }
 }
-
-//TODO GetValidInsertedCommand
